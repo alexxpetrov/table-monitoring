@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import useTableStore from "../store/tableMonitoring.store";
 import { Table, TableType } from "../store/types";
-import useTableStore from "../store/useTableStore";
 
 const TABLE_TYPES = [
   TableType.DINING,

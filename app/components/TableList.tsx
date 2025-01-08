@@ -1,5 +1,5 @@
 import { memo } from "react";
-import useTableStore from "../store/useTableStore";
+import useTableStore from "../store/tableMonitoring.store";
 import { Table } from "./Table";
 
 export const TableList = memo(() => {

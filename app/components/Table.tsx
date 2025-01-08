@@ -3,9 +3,9 @@ import diningTable from "@public/images/table-dining.webp";
 import outdoorTable from "@public/images/table-outdoor.webp";
 import privateTable from "@public/images/table-private.webp";
 import Image, { StaticImageData } from "next/image";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
+import useTableStore from "../store/tableMonitoring.store";
 import { Table as TableType } from "../store/types";
-import useTableStore from "../store/useTableStore";
 
 interface TableProps {
   id: string;
@@ -21,10 +21,13 @@ const tableImages: Record<TableType["type"], StaticImageData> = {
 export const Table: React.FC<TableProps> = ({ id }) => {
   const table = useTableStore((state) => state.tables[id]);
   const removeTable = useTableStore((state) => state.removeTable);
-  const tableStyle: React.CSSProperties = {
-    boxShadow: table.warning ? "0 0 10px 5px rgb(216, 134, 40)" : "none",
-    animation: table.warning ? "blink 1s infinite" : "none",
-  };
+  const tableStyle: React.CSSProperties = useMemo(
+    () => ({
+      boxShadow: table.warning ? "0 0 10px 5px rgb(216, 134, 40)" : "none",
+      animation: table.warning ? "blink 1s infinite" : "none",
+    }),
+    [table.warning]
+  );
 
   const handleRemoveTable = useCallback(() => {
     removeTable(id);

@@ -23,7 +23,7 @@ const INITIAL_STATE = {
   intervalTick: 0,
 };
 
-const useTableStore = create(
+const tableMonitoringStore = create(
   immer<TableStore>((set, get) => ({
     ...INITIAL_STATE,
     setTables: (tables) =>
@@ -85,4 +85,4 @@ const useTableStore = create(
   }))
 );
 
-export default useTableStore;
+export default tableMonitoringStore;
